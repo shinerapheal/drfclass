@@ -8,6 +8,15 @@ class EmpSeralizer(serializers.ModelSerializer):
         model=Emp
         fields='__all__'
 
+    def validate(self, data):
+        
+        if data['age'] < 18:
+            raise serializers.ValidationError('age gr 18')
+        elif '@' not in data['email']:
+            raise serializers.ValidationError("inapropriaate email")
+        return data
+
+
 
 
 
