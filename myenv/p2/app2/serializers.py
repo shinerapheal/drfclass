@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from . models import *
+from django.contrib.auth.models import User
 
 class EmpSeralizer(serializers.ModelSerializer):
 
@@ -15,6 +16,13 @@ class EmpSeralizer(serializers.ModelSerializer):
         elif '@' not in data['email']:
             raise serializers.ValidationError("inapropriaate email")
         return data
+    
+class UserSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+
+        model=User
+        fields=['id','username','password','email']
 
 
 
